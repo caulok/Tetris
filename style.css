@@ -10,6 +10,13 @@ span{
     vertical-align: middle;
     opacity: 50%;
 }
+#start {
+    border: 1px solid white;
+    padding: 10px 20px;
+    border-radius: 15px;
+    background: rgba(39, 125, 161);
+    color: white;
+}
 .grid-container{
     display: flex;
     justify-content:space-evenly;
@@ -27,6 +34,7 @@ span{
     flex-wrap: wrap;
     border: 3px solid #F94144;
     border-radius: 10px;
+    box-shadow: inset 0 0 50px #f94144;
 }
 .grid div{
     width: 20px;
@@ -34,7 +42,8 @@ span{
 }
 .tetraminos{
     background-color: #277DA1;
-    border-radius: 25%;
+    border-radius: 15%;
+    box-shadow: inset 0 0 2px 0 rgba(0,0,0,0.8);
 }
 .mini-grid{
     width: 80px;
@@ -44,6 +53,7 @@ span{
     background-color: #F9C74F;
     border: 3px solid #F94144;
     border-radius: 10px;
+    box-shadow: inset 0 0 20px #f94144;
 }
 .next{
     display: flex;

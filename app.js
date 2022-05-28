@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const grid = document.querySelector('.grid')
     let squares = Array.from(document.querySelectorAll('.grid div'))
-    constScoreDisplay = document.querySelector('#score')
+    const scoreDisplay = document.querySelector('#score')
     const start = document.querySelector('#start')
     const width = 10
     let nextRandom = 0
@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [1, displayWidth+1, displayWidth*2+1, 2],
         [0, displayWidth, displayWidth+1, displayWidth*2+1],
         [1, displayWidth, displayWidth+1, displayWidth*2],
-        [0, 1, displayWidth, displayWidth+1],
+        [1, displayWidth, displayWidth+1, 2],
         [1, displayWidth+1, displayWidth*2+1, displayWidth*1+1]
     ]
     // Mostrar la figura
@@ -165,4 +165,20 @@ document.addEventListener('DOMContentLoaded', () => {
             displaySquares[displayIndex + index].classList.add('tetraminos')
         })
     }
+
+    // Añadir funcionalidad al botón de Start
+    start.addEventListener('click', () => {
+        if (timerId) {
+            clearInterval(timerId)
+            timerId = null
+        }
+        else{
+            draw()
+            timerId = setInterval(moveDown, 400)
+            nextRandom = Math.floor(Math.random()*tetraminos.lenght)
+            mostrarFigura()
+        }
+    })
+
+    
 })
