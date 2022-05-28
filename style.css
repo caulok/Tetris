@@ -16,6 +16,13 @@ span{
     border-radius: 15px;
     background: rgba(39, 125, 161);
     color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+#start:hover{
+    cursor: pointer;
+    background-color: rgba(39, 125, 161, 0.7);
+    transition: 0.5s;
 }
 .grid-container{
     display: flex;

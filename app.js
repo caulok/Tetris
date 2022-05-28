@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const start = document.querySelector('#start')
     const width = 10
     let nextRandom = 0
+    let timerId
 
     // Tetraminos
     const lTetramino = [
@@ -64,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Bajada de tetraminos
-    timerId = setInterval (moveDown, 400)
+    // timerId = setInterval (moveDown, 400)
 
     // Asignar funciones al teclado
     function control(e){
@@ -99,7 +100,7 @@ document.addEventListener('DOMContentLoaded', () => {
             current = tetraminos[random][currentRotation]
             currentPosition = 4
             draw()
-            mostrarFigura()
+            displayShapes()
         }
     }
     // Función moveDown
@@ -156,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [1, displayWidth+1, displayWidth*2+1, displayWidth*1+1]
     ]
     // Mostrar la figura
-    function mostrarFigura(){
+    function displayShapes(){
         // Remover rastro de tetraminos de la grilla
         displaySquares.forEach(square => {
             square.classList.remove('tetraminos')
@@ -169,14 +170,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Añadir funcionalidad al botón de Start
     start.addEventListener('click', () => {
         if (timerId) {
-            clearInterval(timerId)
-            timerId = null
-        }
-        else{
-            draw()
-            timerId = setInterval(moveDown, 400)
-            nextRandom = Math.floor(Math.random()*tetraminos.lenght)
-            mostrarFigura()
+          clearInterval(timerId)
+          timerId = null
+        } else {
+          draw()
+          timerId = setInterval(moveDown, 400)
+          nextRandom = Math.floor(Math.random()*tetraminos.length)
+          displayShapes()
         }
     })
 
