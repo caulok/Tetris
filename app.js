@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const width = 10
     let nextRandom = 0
     let timerId
+    let score = 0
+    const colors = ['#f2ff49','#ff4242','#fb62f6','#645dd7','#b3fffc']
 
     // Tetraminos
     const lTetramino = [
@@ -54,14 +56,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Dibujo de los tetraminos
     function draw(){
-        current.forEach(index =>
-            squares[currentPosition + index].classList.add('tetraminos'))
+        current.forEach(index => {
+            squares[currentPosition + index].classList.add('tetraminos')
+            squares[currentPosition + index].style.backgroundColor = colors[random]
+        })
     }
 
     // Borrar los tetraminos
     function undraw(){
-        current.forEach(index =>
-            squares[currentPosition + index].classList.remove('tetraminos'))
+        current.forEach(index => {
+            squares[currentPosition + index].classList.remove('tetraminos')
+            squares[currentPosition + index].style.backgroundColor = ''
+        })
     }
 
     // Bajada de tetraminos
@@ -101,6 +107,8 @@ document.addEventListener('DOMContentLoaded', () => {
             currentPosition = 4
             draw()
             displayShapes()
+            addScore()
+            gameOver()
         }
     }
     // Función moveDown
@@ -161,13 +169,16 @@ document.addEventListener('DOMContentLoaded', () => {
         // Remover rastro de tetraminos de la grilla
         displaySquares.forEach(square => {
             square.classList.remove('tetraminos')
+            square.style.backgroundColor = ''
         })
         siguiente[nextRandom].forEach( index => {
             displaySquares[displayIndex + index].classList.add('tetraminos')
+            displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
+
         })
     }
 
-    // Añadir funcionalidad al botón de Start
+    // Añadir funcionalidad al botón de Start y Pause
     start.addEventListener('click', () => {
         if (timerId) {
           clearInterval(timerId)
@@ -180,5 +191,31 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     })
 
-    
+    // Puntaje
+    function addScore(){
+        for (let i = 0; i < 199; i +=width) {
+            const row = [i, i+1, i+2, i+3, i+4, i+5, i+6, i+7, i+8, i+9]
+
+            if(row.every(index => squares[index].classList.contains('taken'))) {
+                score +=10
+                scoreDisplay.innerHTML = score
+                row.forEach(index => {
+                    squares[index].classList.remove('taken')
+                    squares[index].classList.remove('tetraminos')
+                    squares[index].style.backgroundColor = ''
+                })
+                const squaresRemoved = squares.splice(i, width)
+                squares = squaresRemoved.concat(squares)
+                squares.forEach(cell => grid.appendChild(cell))
+            }
+        }
+    }
+
+    // Game Over
+    function gameOver() {
+        if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
+            scoreDisplay.innerHTML = 'Perdiste'
+            clearInterval(timerId)
+        }
+    }
 })

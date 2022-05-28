@@ -10,11 +10,16 @@ span{
     vertical-align: middle;
     opacity: 50%;
 }
+span#score {
+    font-size: 100%;
+    color: #F9C74F;
+    opacity: 100%;
+}
 #start {
-    border: 1px solid white;
+    border: none;
     padding: 10px 20px;
     border-radius: 15px;
-    background: rgba(39, 125, 161);
+    background: #F94144;
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -36,12 +41,12 @@ span{
 .grid {
     width: 200px;
     height: 400px;
-    background-color: #F9C74F;
+    background-color: black;
     display: flex;
     flex-wrap: wrap;
     border: 3px solid #F94144;
     border-radius: 10px;
-    box-shadow: inset 0 0 50px #f94144;
+    box-shadow: inset 0 0 50px rgb(100 100 100 / 30%);
 }
 .grid div{
     width: 20px;
@@ -57,10 +62,10 @@ span{
     height: 80px;
     display: flex;
     flex-wrap: wrap;
-    background-color: #F9C74F;
+    background-color: black;
     border: 3px solid #F94144;
     border-radius: 10px;
-    box-shadow: inset 0 0 20px #f94144;
+    box-shadow: inset 0 0 50px rgb(100 100 100 / 30%);
 }
 .next{
     display: flex;
