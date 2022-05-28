@@ -213,8 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Game Over
     function gameOver() {
+        var perdiste = ' - Perdiste, vuelve a intentarlo'
+
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
-            scoreDisplay.innerHTML = 'Perdiste'
+            scoreDisplay.innerHTML = score + perdiste
             clearInterval(timerId)
         }
     }
