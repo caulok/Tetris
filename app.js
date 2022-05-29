@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
     const start = document.querySelector('#start')
+    const restart = document.querySelector('#restart')
     const width = 10
     let nextRandom = 0
     let timerId
@@ -213,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Game Over
     function gameOver() {
-        var perdiste = ' - Perdiste, vuelve a intentarlo'
+        var perdiste = ' - Estuviste cerca, volvé a intentarlo'
 
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
             scoreDisplay.innerHTML = score + perdiste

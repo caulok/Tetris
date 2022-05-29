@@ -21,7 +21,7 @@ span#score {
     color: #F9C74F;
     opacity: 100%;
 }
-#start {
+button {
     border: none;
     padding: 10px 20px;
     border-radius: 15px;
@@ -30,7 +30,7 @@ span#score {
     font-weight: bold;
     text-transform: uppercase;
 }
-#start:hover{
+button:hover{
     cursor: pointer;
     background-color: rgba(39, 125, 161, 0.7);
     transition: 0.5s;
