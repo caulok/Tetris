@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let squares = Array.from(document.querySelectorAll('.grid div'))
     const scoreDisplay = document.querySelector('#score')
     const start = document.querySelector('#start')
-    const restart = document.querySelector('#restart')
     const width = 10
     let nextRandom = 0
     let timerId
@@ -92,7 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
         else if(e.keyCode === 40){
             moveDown()
         }
-        
+        // Bajar
+        else if(e.keyCode === 32){
+            startPause()
+        }       
     }
     // Eventos al mover las teclas
     document.addEventListener('keyup',control)
@@ -163,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [0, displayWidth, displayWidth+1, displayWidth*2+1],
         [1, displayWidth, displayWidth+1, displayWidth*2],
         [1, displayWidth, displayWidth+1, 2],
-        [1, displayWidth+1, displayWidth*2+1, displayWidth*1+1]
+        [1, displayWidth+1, displayWidth*2+1, displayWidth*3+1]
     ]
     // Mostrar la figura
     function displayShapes(){
@@ -175,23 +177,21 @@ document.addEventListener('DOMContentLoaded', () => {
         siguiente[nextRandom].forEach( index => {
             displaySquares[displayIndex + index].classList.add('tetraminos')
             displaySquares[displayIndex + index].style.backgroundColor = colors[nextRandom]
-
         })
     }
 
     // Añadir funcionalidad al botón de Start y Pause
     start.addEventListener('click', () => {
         if (timerId) {
-          clearInterval(timerId)
-          timerId = null
+        clearInterval(timerId)
+        timerId = null
         } else {
-          draw()
-          timerId = setInterval(moveDown, 400)
-          nextRandom = Math.floor(Math.random()*tetraminos.length)
-          displayShapes()
+        draw()
+        timerId = setInterval(moveDown, 400)
+        nextRandom = Math.floor(Math.random()*tetraminos.length)
+        displayShapes()
         }
     })
-
     // Puntaje
     function addScore(){
         for (let i = 0; i < 199; i +=width) {
@@ -214,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Game Over
     function gameOver() {
-        var perdiste = ' - Estuviste cerca, volvé a intentarlo'
+        var perdiste = ' - ¡Bien hecho! volvé a intentarlo'
 
         if(current.some(index => squares[currentPosition + index].classList.contains('taken'))){
             scoreDisplay.innerHTML = score + perdiste

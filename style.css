@@ -71,6 +71,7 @@ button:hover{
     background-color: black;
     border: 3px solid #F94144;
     border-radius: 10px;
+    padding:10px;
     box-shadow: inset 0 0 50px rgb(100 100 100 / 30%);
 }
 .next{
